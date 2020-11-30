@@ -1,0 +1,7 @@
+ui bll dal----
+
+solid ---- 
+
+POCO POJO ----
+
+Flux - arxitektura ---- redux
