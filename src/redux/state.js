@@ -1,3 +1,8 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
+const SEND_MESSAGE = "SEND-MESSAGE";
+
 let store = {
   _state: {
     profilePage: {
@@ -5,7 +10,7 @@ let store = {
         { id: 1, messages: "Post 1", likesCount: 12 },
         { id: 2, messages: "Post 2", likesCount: 11 },
       ],
-      newPostText: "It-kamasutra.com",
+      newPostText: "Start message",
     },
     dialogsPage: {
       messages: [
@@ -21,6 +26,7 @@ let store = {
         { id: 5, name: "Viktor" },
         { id: 6, name: "Valera" },
       ],
+      newMessageBody: "",
     },
   },
 
@@ -36,21 +42,45 @@ let store = {
     this._callSubsqriber = observer;
   },
 
-  addPost() {
-    let newPost = {
-      id: 4,
-      messages: this._state.profilePage.newPostText,
-      likesCount: 11,
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = "";
-    this._callSubsqriber(this._state);
+  dispatch(action) {
+    if (action.type === ADD_POST) {
+      let newPost = {
+        id: 4,
+        messages: this._state.profilePage.newPostText,
+        likesCount: 11,
+      };
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = "";
+      this._callSubsqriber(this._state);
+    } else if (action.type === UPDATE_NEW_POST_TEXT) {
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubsqriber(this._state);
+    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+      this._state.dialogsPage.newMessageBody = action.body;
+      this._callSubsqriber(this._state);
+    } else if (action.type === SEND_MESSAGE) { console.log(this._state, "++++++++++++++");
+      let body = this._state.dialogsPage.newMessageBody;
+      this._state.dialogsPage.newMessageBody = "";
+      this._state.dialogsPage.messages.push({ id: 3, message: body });
+      this._callSubsqriber(this._state);
+    }
   },
+};
 
-  updateNewPostText(newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubsqriber(this._state);
-  },
+export let addPostActionCreator = () => {
+  return { type: "ADD-POST" };
+};
+
+export let updateNewPostTextActionCreator = (text) => {
+  return { type: "UPDATE-NEW-POST-TEXT", newText: text };
+};
+
+export let sendMessageCreator = () => {
+  return { type: SEND_MESSAGE };
+};
+
+export let updateNewMessageBodyCreator = (text) => {
+  return { type: UPDATE_NEW_MESSAGE_BODY, body: text };
 };
 
 export default store;

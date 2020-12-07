@@ -17,15 +17,14 @@ function App(props) {
             path="/profile"
             render={() => (
               <Profile
-                updateNewPostText={props.updateNewPostText}
                 profilePage={props.state.profilePage}
-                addPost={props.addPost}
+                dispatch={props.dispatch}
               />
             )}
           />
           <Route
             path="/dialogs"
-            render={() => <Dialogs state={props.state.dialogsPage} />}
+            render={() => <Dialogs dispatch={props.dispatch}  state={props.state.dialogsPage} />}
           />
         </div>
       </div>
