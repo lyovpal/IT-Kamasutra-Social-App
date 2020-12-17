@@ -24,7 +24,12 @@ function App(props) {
           />
           <Route
             path="/dialogs"
-            render={() => <Dialogs dispatch={props.dispatch}  state={props.state.dialogsPage} />}
+            render={() => (
+              <Dialogs
+                dispatch={props.dispatch}
+                state={props.state.dialogsPage}
+              />
+            )}
           />
         </div>
       </div>

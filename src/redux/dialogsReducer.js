@@ -2,7 +2,6 @@ const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE";
 
 let initialState = {
-  dialogsPage: {
     messages: [
       { id: 1, message: "Hi" },
       { id: 2, message: "How are you" },
@@ -17,7 +16,6 @@ let initialState = {
       { id: 6, name: "Valera" },
     ],
     newMessageBody: "",
-  },
 };
 
 const dialogsReducer = (state = initialState, action) => {

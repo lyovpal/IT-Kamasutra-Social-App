@@ -25,7 +25,7 @@ const Dialogs = (props) => {
     props.dispatch(updateNewMessageBodyCreator(body));
   }
 
-
+  
   return (
     <div className={s.dialogs}>
       <div className={s.dialogItems}>{dialogsElements}</div>

@@ -2,14 +2,12 @@ const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
 let initialState = {
-  profilePage: {
     posts: [
       { id: 1, messages: "Post 1", likesCount: 12 },
       { id: 2, messages: "Post 2", likesCount: 11 },
     ],
     newPostText: "Start message",
-  },
-};
+  };
 
 const profilelReducer = (state = initialState, action) => {
   switch (action.type) {
