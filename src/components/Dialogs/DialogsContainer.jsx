@@ -6,7 +6,7 @@ import {
 } from '../../redux/dialogsReducer';
 
 const DialogsContainer = (props) => {
-  let state = props.store.getState();
+  let state = props.store.getState().dialogsPage;
 
   let onSendMessageClick = () => {
     props.store.dispatch(sendMessageCreator());
@@ -20,7 +20,7 @@ const DialogsContainer = (props) => {
     <Dialogs
       sendMessage={onSendMessageClick}
       updateNewMessageBody={onNewMessageChange}
-      state={state.dialogsPage}
+      state={state}
     />
   );
 };
