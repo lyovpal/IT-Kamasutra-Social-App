@@ -3,9 +3,6 @@ import s from "./MyPosts.module.css";
 import Post from "./Posts/Post";
 
 const MyPosts = (props) => {
-
-
-  console.log(props , "prossssspppp ppppoooosst")
   const postElements = props.posts.map((post, index) => (
     <Post message={post.messages} key={index} likesCount={post.likesCount} />
   ));
