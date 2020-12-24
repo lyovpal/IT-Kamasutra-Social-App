@@ -5,3 +5,6 @@ solid ----
 POCO POJO ----
 
 Flux - arxitektura ---- redux
+
+48. 
+
