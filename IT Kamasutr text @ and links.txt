@@ -8,3 +8,6 @@ Flux - arxitektura ---- redux
 
 48. 
 
+connectr(function 1 "mapStateToProps", function 2 "mapDispatchToProps")(rendering <Component/>)
+
+DDD - book Eric Evans
