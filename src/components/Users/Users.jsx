@@ -1,65 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Users.module.css';
+import * as axios from 'axios';
+import userPhoto from '../../assets/images/user.png';
 
 let Users = (props) => {
-  if (props.users.length === 0) {
-    props.setUsers([
-      {
-        id: 1,
-        photoURL:
-          'https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png',
-        followed: false,
-        fullName: 'Anderson',
-        status: 'Agent',
-        location: { city: 'New York', country: 'USA' },
-      },
-      {
-        id: 2,
-        photoURL:
-          'https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png',
-        followed: true,
-        fullName: 'Smith',
-        status: 'Agent',
-        location: { city: 'New York 2', country: 'USA' },
-      },
-      {
-        id: 3,
-        photoURL:
-          'https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png',
-        followed: false,
-        fullName: 'Jhon',
-        status: 'Agent',
-        location: { city: 'New York 3', country: 'USA' },
-      },]
-    )
-  }
+  let getUsers = () => {
+    if (props.users.length === 0) {
+      axios
+        .get('https://social-network.samuraijs.com/api/1.0/users')
+        .then((resp) => {
+          props.setUsers(resp.data.items);
+        });
+    }
+  };
 
   let user = props.users.map((item) => {
     return (
-      <div key={item.id}>
-        <span>
-          <div>
-            <img className={style.avatar} src={item.photoURL}/>
-          </div>
-          <div>
-            { item.followed ? <button onClick={() => {props.unFollow(item.id)}}>Unfollow</button> 
-            : <button onClick={() => {props.follow(item.id)}}>Follow</button> }
-          </div>
-        </span>
-        <span>
+      <div>
+        <div key={item.id}>
           <span>
-            <div>{item.fullName}</div>
-            <div>{item.status}</div>
+            <div>
+              <img
+                className={style.avatar}
+                src={item.photos.small !== null ? item.photos.small : userPhoto}
+              />
+            </div>
+            <div>
+              {item.followed ? (
+                <button
+                  onClick={() => {
+                    props.unFollow(item.id);
+                  }}
+                >
+                  Unfollow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    props.follow(item.id);
+                  }}
+                >
+                  Follow
+                </button>
+              )}
+            </div>
           </span>
           <span>
-            <div>{item.location.country}</div>
-            <div>{item.location.city}</div>
+            <span>
+              <div>{item.name}</div>
+              <div>{item.status}</div>
+            </span>
+            <span>
+              {/* <div>{item.location.country}</div>
+            <div>{item.location.city}</div> */}
+            </span>
           </span>
-        </span>
+        </div>
       </div>
     );
   });
-  return <div>{user}</div>;
+  return (
+    <div>
+      <button onClick={getUsers}>getUsers</button>
+      <div>{user}</div>
+    </div>
+  );
 };
 
 export default Users;
