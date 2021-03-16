@@ -3,7 +3,7 @@ import style from './Users.module.css';
 import * as axios from 'axios';
 import userPhoto from '../../assets/images/user.png';
 
-class Users extends React.Component {
+class UsersClass extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -75,4 +75,4 @@ class Users extends React.Component {
   }
 }
 
-export default Users;
+export default UsersClass;
