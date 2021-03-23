@@ -11,3 +11,9 @@ Flux - arxitektura ---- redux
 connectr(function 1 "mapStateToProps", function 2 "mapDispatchToProps")(rendering <Component/>)
 
 DDD - book Eric Evans
+
+control inversion 
+
+endPoint
+
+(Store send Actions to all reducers)
