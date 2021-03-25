@@ -65,6 +65,4 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-let UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
-
-export default UsersContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
