@@ -71,8 +71,8 @@ export let setCurrentPageAC = (currentPage) => {
 export let setTotalUsersCountAC = (totalCount) => {
   return { type: SET_TOTAL_USERS_COUNT, totalCount };
 };
-export let setIsFetchinAC = (totalCount) => {
-  return { type: SET_TOTAL_USERS_COUNT, totalCount };
+export let setIsFetchingAC = (isFetching) => {
+  return { type: SET_TOTAL_USERS_COUNT, isFetching };
 };
 
 

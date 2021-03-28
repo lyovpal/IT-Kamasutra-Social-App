@@ -15,7 +15,7 @@ let Users = (props) => {
           <div key={item.id}>
             <span>
               <div>
-                <img className={style.avatar} src={item.photos.small !== null ? item.photos.small : userPhoto}/>
+                <img className={style.avatar} src={item.photos.small ? item.photos.small : userPhoto}/>
               </div>
               <div>
                 {item.followed ? (<button onClick={() => {props.unFollow(item.id);}}>Unfollow</button>) : 
@@ -38,7 +38,7 @@ let Users = (props) => {
     return (
         <div>
           <div>
-            {pages.map(page => <span onClick={(e) => props.onPageChanged(page)} className={props.currentPage === page && style.selectedPage}>{page}</span>)}
+            {pages.map(page =><span key={page.index} onClick={(e) => props.onPageChanged(page)} className={props.currentPage === page ? style.selectedPage : null}>{page}</span>)}
           </div>
           <div>{user}</div>
         </div>
