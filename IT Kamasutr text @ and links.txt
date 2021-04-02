@@ -17,3 +17,5 @@ control inversion
 endPoint
 
 (Store send Actions to all reducers)
+
+withRouter

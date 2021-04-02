@@ -72,7 +72,7 @@ export let setTotalUsersCountAC = (totalCount) => {
   return { type: SET_TOTAL_USERS_COUNT, totalCount };
 };
 export let toggleIsFetchingAC = (isFetching) => {
-  return { type: SET_TOTAL_USERS_COUNT, isFetching };
+  return { type: TOGGLE_IS_FETCHING, isFetching };
 };
 
 
