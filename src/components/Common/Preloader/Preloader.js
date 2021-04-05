@@ -3,7 +3,7 @@ import React from "react"
 
 const Preloader = () => {
   return (
-    <div style={{ backgroudnColor: 'white' }}>
+    <div>
       <img src={preloader} alt=""/>
     </div>
   );

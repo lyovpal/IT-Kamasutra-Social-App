@@ -17,7 +17,7 @@ let Users = (props) => {
             <span>
               <div>
                 <NavLink to={'/profile/' + item.id}>
-                <img className={style.avatar} src={item.photos.small ? item.photos.small : userPhoto}/>
+                <img className={style.avatar} alt="" src={item.photos.small ? item.photos.small : userPhoto}/>
                 </NavLink>
               </div>
               <div>
@@ -41,7 +41,7 @@ let Users = (props) => {
     return (
         <div>
           <div>
-            {pages.map(page =><span key={page.index} onClick={(e) => props.onPageChanged(page)} className={props.currentPage === page ? style.selectedPage : null}>{page}</span>)}
+            {pages.map(page =><span key={page.index} onClick={() => props.onPageChanged(page)} className={props.currentPage === page ? style.selectedPage : null}>{page}</span>)}
           </div>
           <div>{user}</div>
         </div>
