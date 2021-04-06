@@ -21,29 +21,36 @@ let Users = (props) => {
                 </NavLink>
               </div>
               <div>
+                {/* {
+                  item.followed ? <button onClick={() => props.unFollow(item.id) }>unFollow</button> : <button onClick={() => props.follow(item.id)}>Follow</button>
+                } */}
                 {item.followed ? 
-                (<button onClick={() => {
+                <button onClick={() => {
                   axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {
-                        withCredentials: true,
-                        // headers: {API-KEY: key}
+                    withCredentials: true,
+                      //   headers: {
+                      //     'API-KEY': 'd0ce4cd8-d0d2-4152-99ad-f6e1407cb23f'
+                      // }
+                  
                       })
                   .then((resp) => {
                     if (resp.data.resultCode === 0 ) {
                       props.unFollow(item.id)
                     }
               });
-                  ;}}>Unfollow</button>) :
+                  ;}}>Unfollow</button> :
                   
-                (<button onClick={() => {
+                <button onClick={() => {
                   axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {} , {
-                        withCredentials: true
+                    withCredentials: true
                       })
                   .then((resp) => {
+                    console.log(resp, "response")
                     if (resp.data.resultCode === 0 ) {
                       props.follow(item.id)
                     }
               });
-                ;}}>Follow</button>)}
+                ;}}>Follow</button>}
               </div>
             </span>
             <span>
