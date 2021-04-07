@@ -21,3 +21,8 @@ endPoint
 single resposibilty ---
 
 withRouter ---
+
+DAL - data abstraction layer
+
+64 video lesson 63 
+
