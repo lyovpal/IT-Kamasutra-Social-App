@@ -42,7 +42,10 @@ let Users = (props) => {
                   
                 <button onClick={() => {
                   axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {} , {
-                    withCredentials: true
+                    withCredentials: true,
+                      //   headers: {
+                      //     'API-KEY': 'd0ce4cd8-d0d2-4152-99ad-f6e1407cb23f'
+                      // }
                       })
                   .then((resp) => {
                     console.log(resp, "response")
