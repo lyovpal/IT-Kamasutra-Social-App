@@ -26,3 +26,4 @@ DAL - data abstraction layer
 
 64 video lesson 63 
 
+psevdo istina i loj 
