@@ -21,14 +21,10 @@ let Users = (props) => {
                 </NavLink>
               </div>
               <div>
-                {/* {
-                  item.followed ? <button onClick={() => props.unFollow(item.id) }>unFollow</button> : <button onClick={() => props.follow(item.id)}>Follow</button>
-                } */}
                 {item.followed ? 
-                <button disabled={props.toggleFollowingProgress.some(id => id === item.id)} onClick={() => {
+                <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
                   props.toggleFollowingProgress(true, item.id);
-                 UserAPI.unFollow.delete(item.id)
-                  .then((data) => {
+                 UserAPI.unFollow.delete(item.id).then((data) => {
                     if (data.resultCode === 0 ) {
                       props.unFollow(item.id)
                     }
@@ -36,10 +32,9 @@ let Users = (props) => {
               });
                   ;}}>Unfollow</button> :
                   
-                <button disabled={props.toggleFollowingProgress.some(id => id === item.id)} onClick={() => {
+                <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
                   props.toggleFollowingProgress(true, item.id);
-                 UserAPI.follow.post(item.id)
-                  .then((data) => {
+                 UserAPI.follow.post(item.id).then((data) => {
                     if (data.resultCode === 0 ) {
                       props.follow(item.id)
                     }

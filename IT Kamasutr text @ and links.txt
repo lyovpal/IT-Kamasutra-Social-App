@@ -8,13 +8,13 @@ Flux - arxitektura ---- redux
 
 48. 
 
-connectr(function 1 "mapStateToProps", function 2 "mapDispatchToProps")(rendering <Component/>)
+connect(function 1 "mapStateToProps", function 2 "mapDispatchToProps")(rendering <Component/>)
 
 DDD - book Eric Evans
 
 control inversion 
 
-endPoint
+lesson 50: Rest API endPoint
 
 (Store send Actions to all reducers)
 
@@ -22,8 +22,10 @@ single resposibilty ---
 
 withRouter ---
 
-DAL - data abstraction layer
+lesson 63 -  DAL - data abstraction layer
 
-64 video lesson 63 
 
-psevdo istina i loj 
+
+lesson 64 - psevdo istina i loj
+
+
