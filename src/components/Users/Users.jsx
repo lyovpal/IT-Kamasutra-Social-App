@@ -22,9 +22,9 @@ let Users = (props) => {
               </div>
               <div>
                 {item.followed ? 
-                <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
-                  props.toggleFollowingProgress(true, item.id);
-                 UserAPI.unFollow.delete(item.id).then((data) => {
+                <button onClick={() => {
+                 UserAPI.unFollow(item.id)
+                  .then((data) => {
                     if (data.resultCode === 0 ) {
                       props.unFollow(item.id)
                     }
@@ -32,9 +32,9 @@ let Users = (props) => {
               });
                   ;}}>Unfollow</button> :
                   
-                <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
-                  props.toggleFollowingProgress(true, item.id);
-                 UserAPI.follow.post(item.id).then((data) => {
+                <button onClick={() => {
+                 UserAPI.follow(item.id)
+                  .then((data) => {
                     if (data.resultCode === 0 ) {
                       props.follow(item.id)
                     }
