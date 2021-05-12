@@ -3,6 +3,7 @@ import style from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from "react-router-dom";
 import { UserAPI } from "../../api/api";
+import { followThunkCreator } from "../../redux/usersReducer";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -17,30 +18,21 @@ let Users = (props) => {
             <span>
               <div>
                 <NavLink to={'/profile/' + item.id}>
-                <img className={style.avatar} alt="" src={item.photos.small ? item.photos.small : userPhoto}/>
+                  <img className={style.avatar} alt="" src={item.photos.small ? item.photos.small : userPhoto}/>
                 </NavLink>
               </div>
               <div>
                 {item.followed ? 
+                <button onClick={() => { followThunkCreator(item.id)}}>Unfollow</button> :
                 <button onClick={() => {
-                 UserAPI.unFollow(item.id)
-                  .then((data) => {
-                    if (data.resultCode === 0 ) {
-                      props.unFollow(item.id)
-                    }
-                    props.toggleFollowingProgress(false, item.id);
-              });
-                  ;}}>Unfollow</button> :
                   
-                <button onClick={() => {
-                 UserAPI.follow(item.id)
-                  .then((data) => {
+                 UserAPI.follow(item.id).then((data) => {
                     if (data.resultCode === 0 ) {
                       props.follow(item.id)
                     }
                     props.toggleFollowingProgress(false, item.id);
               });
-                ;}}>Follow</button>}
+                }}>Follow</button>}
               </div>
             </span>
             <span>

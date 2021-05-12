@@ -2,32 +2,21 @@ import React from 'react';
 import {
   followAC,
   unFollowAC,
-  setUsersAC,
   setCurrentPageAC,
-  setTotalUsersCountAC,
-  toggleIsFetchingAC,
   toggleFollowingProgressAC,
   getUsersThunkCreator,
 } from '../../redux/usersReducer';
 import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../Common/Preloader/Preloader';
-import { UserAPI } from '../../api/api';
 
 class UsersContainer extends React.Component {
-  
-  componentDidMount () {
-    this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
+  componentDidMount() {
+    this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
   }
-  
-  onPageChanged = (pageNumber) => {
-    this.props.toggleIsFetching(true);
 
-    this.props.setCurrentPage(pageNumber);
-    UserAPI.getUsers(pageNumber, this.props.pageSize).then((resp) => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(resp.items);
-    });
+  onPageChanged = (pageNumber) => {
+    this.props.getUsersThunk(pageNumber, this.props.pageSize);
   };
 
   render() {
@@ -69,17 +58,8 @@ let mapDispatchToProps = (dispatch) => {
     unFollow: (userId) => {
       dispatch(unFollowAC(userId));
     },
-    setUsers: (users) => {
-      dispatch(setUsersAC(users));
-    },
     setCurrentPage: (pageNumber) => {
       dispatch(setCurrentPageAC(pageNumber));
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setTotalUsersCountAC(totalCount));
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(toggleIsFetchingAC(isFetching));
     },
     toggleFollowingProgress: (isFetching, userId) => {
       dispatch(toggleFollowingProgressAC(isFetching, userId));

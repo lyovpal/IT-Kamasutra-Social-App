@@ -64,7 +64,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         followingInProgress: action.isFetching
           ? [...state.followingInProgress.action.userId]
-          : state.followingInProgress.filter((id) => id != action.id),
+          : state.followingInProgress.filter((id) => id !== action.id),
       };
     default:
       return state;
@@ -96,13 +96,21 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(toggleIsFetchingAC(true));
 
-    UserAPI.getUsers(currentPage, pageSize).then(
-      (resp) => {
-        dispatch(toggleIsFetchingAC(false));
-        dispatch(setUsersAC(resp.items));
-        dispatch(setTotalUsersCountAC(resp.totalCount));
+    UserAPI.getUsers(currentPage, pageSize).then((resp) => {
+      dispatch(toggleIsFetchingAC(false));
+      dispatch(setUsersAC(resp.items));
+      dispatch(setTotalUsersCountAC(resp.totalCount));
+    });
+  };
+};
+export const followThunkCreator = (userId) => {
+  return (dispatch) => {
+    UserAPI.unFollow(userId).then((data) => {
+      if (data.resultCode === 0) {
+        unFollowAC(userId);
       }
-    );
+      toggleFollowingProgressAC(false, userId);
+    });
   };
 };
 
