@@ -22,10 +22,13 @@ let Users = (props) => {
                 </NavLink>
               </div>
               <div>
+              {/* <button  onClick={() => {
+                  props.toggleFollowingProgress(true, item.id); */}
                 {item.followed ? 
-                <button onClick={() => { followThunkCreator(item.id)}}>Unfollow</button> :
+                <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => { followThunkCreator(item.id)}}>Unfollow</button> :
                 <button onClick={() => {
                   
+                props.toggleFollowingProgress(true, item.id); 
                  UserAPI.follow(item.id).then((data) => {
                     if (data.resultCode === 0 ) {
                       props.follow(item.id)
