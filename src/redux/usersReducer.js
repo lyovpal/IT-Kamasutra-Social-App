@@ -63,17 +63,17 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         followingInProgress: action.isFetching
-          ? [...state.followingInProgress.action.userId]
-          : state.followingInProgress.filter((id) => id !== action.id),
+          ? [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter((id) => id !== action.userId),
       };
     default:
       return state;
   }
 };
-export let followAC = (userId) => {
+export let followSuccess = (userId) => {
   return { type: FOLLOW, userId };
 };
-export let unFollowAC = (userId) => {
+export let unFollowSuccess = (userId) => {
   return { type: UNFOLLOW, userId };
 };
 export let setUsersAC = (users) => {
@@ -103,13 +103,26 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
     });
   };
 };
-export const followThunkCreator = (userId) => {
+export const follow = (userId) => {
   return (dispatch) => {
+      dispatch(toggleFollowingProgressAC(true, userId)); 
+    UserAPI.follow(userId).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(followSuccess(userId));
+      }
+      dispatch(toggleFollowingProgressAC(false, userId));
+    });
+  };
+};
+
+export const unFollow = (userId) => {
+  return (dispatch) => {
+      dispatch(toggleFollowingProgressAC(true, userId)); 
     UserAPI.unFollow(userId).then((data) => {
       if (data.resultCode === 0) {
-        unFollowAC(userId);
+        dispatch(unFollowSuccess(userId));
       }
-      toggleFollowingProgressAC(false, userId);
+      dispatch(toggleFollowingProgressAC(false, userId));
     });
   };
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  followAC,
-  unFollowAC,
   setCurrentPageAC,
   toggleFollowingProgressAC,
   getUsersThunkCreator,
+  follow,
+  unFollow,
 } from '../../redux/usersReducer';
 import { connect } from 'react-redux';
 import Users from './Users';
@@ -16,6 +16,7 @@ class UsersContainer extends React.Component {
   }
 
   onPageChanged = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber)
     this.props.getUsersThunk(pageNumber, this.props.pageSize);
   };
 
@@ -30,7 +31,6 @@ class UsersContainer extends React.Component {
           totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
           currentPage={this.props.currentPage}
-          toggleFollowingProgress={this.props.toggleFollowingProgress}
           followingInProgress={this.props.followingInProgress}
           onPageChanged={this.onPageChanged}
         />
@@ -53,10 +53,10 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
   return {
     follow: (userId) => {
-      dispatch(followAC(userId));
+      dispatch(follow(userId));
     },
     unFollow: (userId) => {
-      dispatch(unFollowAC(userId));
+      dispatch(unFollow(userId));
     },
     setCurrentPage: (pageNumber) => {
       dispatch(setCurrentPageAC(pageNumber));
