@@ -28,4 +28,3 @@ lesson 63 -  DAL - data abstraction layer
 
 lesson 64 - psevdo istina i loj
 
-

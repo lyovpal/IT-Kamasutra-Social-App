@@ -2,15 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import Header from "./Header"
 import {setAuthUserData} from "../../redux/authReducer"
-import { UserAPI } from "../../api/api";
+import { authAPI } from "../../api/api";
 
 
 class HeaderConatainer extends React.Component {
     componentDidMount () {
-        UserAPI.auth()
+        authAPI.me()
         .then((resp) => {
-            if (resp.resultCode === 0) {
-                let {id,  email, login} = resp.data
+            if (resp.data.resultCode === 0) {
+                let {id,  email, login} = resp.data.data
                 this.props.setAuthUserData(id, email, login)}
         });
     }
