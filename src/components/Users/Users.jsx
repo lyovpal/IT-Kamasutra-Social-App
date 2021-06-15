@@ -40,7 +40,7 @@ let Users = (props) => {
     });
     return (
         <div>
-          <div>
+          <div className={style.enum}>
             {pages.map(page =><span key={page.index} onClick={() => props.onPageChanged(page)} className={props.currentPage === page ? style.selectedPage : null}>{page}</span>)}
           </div>
           <div>{user}</div>

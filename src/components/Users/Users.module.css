@@ -16,3 +16,6 @@
     padding: 5px;
 }
 
+.enum > span {
+    display: inline-block;
+}
